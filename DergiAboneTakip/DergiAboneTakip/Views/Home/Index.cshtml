@@ -1,0 +1,41 @@
+﻿@using DergiAboneTakip.Models
+@using X.PagedList
+@using X.PagedList.Mvc.Core
+@model X.PagedList.PagedList<DergilerTablosu>
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+
+    <br />
+
+    <table class="table table-hover">
+
+        <tr>
+            <th style="text-align:center">ID</th>
+            <th style="text-align:center">Kategori Adı</th>
+            <th style="text-align:center">Dergi Adı</th>
+            <th style="text-align:center">Fiyat (₺)</th>
+            <th style="text-align:center">Abone Ol</th>
+        </tr>
+        @foreach (var x in Model)
+        {
+            <tr>
+
+
+                <td>@x.ID</td>
+                <td>@x.kategori.KategoriAdi</td>
+                <td>@x.DergiAdi</td>
+                <td>@x.Fiyat ₺</td>
+                <td><a href="/Home/AboneOl?ID=@x.ID @x.DergiAdi @x.Fiyat" class="btn btn-info">Abone Ol</a></td>
+
+
+            </tr>
+        }
+
+    </table>
+
+</div>
+@Html.PagedListPager((IPagedList)Model, s => Url.Action("Index", new { s }))

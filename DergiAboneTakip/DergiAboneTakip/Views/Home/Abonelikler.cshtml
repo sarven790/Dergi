@@ -1,0 +1,45 @@
+﻿@using DergiAboneTakip.Models
+@using X.PagedList
+@using X.PagedList.Mvc.Core
+@model X.PagedList.PagedList<AboneTablosu>
+
+@{
+    ViewData["Title"] = "Abonelikler";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="text-center">
+
+    <br />
+
+    <table class="table table-hover">
+
+        <tr>
+            <th style="text-align:center">ID</th>
+            <th style="text-align:center">Dergi ID</th>
+            <th style="text-align:center">Ay</th>
+            <th style="text-align:center">Fiyat (₺)</th>
+            <th style="text-align:center">Abone Tarih</th>
+            <th style="text-align:center">Abonelikten Çık</th>
+        </tr>
+        @foreach (var x in Model)
+        {
+            <tr>
+
+
+                <td>@x.ID</td>
+                <td>@x.DergiID</td>
+                <td>@x.Ay</td>
+                <td>@x.Fiyat ₺</td>
+                <td>@x.AboneTarih.ToString().Split(' ').First()</td>
+                <td><a href="/Home/AboneSil/@x.ID" class="btn btn-danger">Abonelikten Çık</a></td>
+
+
+            </tr>
+        }
+
+    </table>
+
+</div>
+@Html.PagedListPager((IPagedList)Model, s => Url.Action("Abonelikler", new { s }))

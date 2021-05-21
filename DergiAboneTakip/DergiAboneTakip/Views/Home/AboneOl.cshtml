@@ -1,0 +1,38 @@
+﻿@model DergiAboneTakip.Models.AboneTablosu
+@using Microsoft.AspNetCore.Http;
+@{
+    ViewData["Title"] = "DergiGetir";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    int id = (int)Context.Session.GetInt32("id");
+}
+
+<form class="form-group" method="post">
+
+    <div style="display:none">
+        <input type="text" name="UyeID" value=@id />
+        <input type="text" name="Durum" value="True" />
+        <input type="text" name="AboneTarih" value="@DateTime.Now" />
+        <input type="text" name="DergiID" value="@ViewBag.dergiid" />
+        <input type="text" name="Fiyat" value="@ViewBag.fiyat" />
+    </div>
+ 
+    <div class="form-group mb-3">
+        <h2>@ViewBag.dergiad</h2>
+        <hr />
+        <h3>@ViewBag.fiyat ₺</h3>
+    </div>
+    <div class="form-group">
+        <select name="Ay" class="form-control rounded-left">
+
+            <option>Ay Seçiniz</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+
+        </select>
+    </div>
+
+    <div class="form-group">
+        <button class="form-control btn btn-primary submit px-3">Abone Ol</button>
+    </div>
+
+</form>

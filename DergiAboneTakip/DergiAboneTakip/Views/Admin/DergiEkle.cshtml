@@ -1,0 +1,27 @@
+﻿@model DergiAboneTakip.Models.DergilerTablosu
+@{
+    ViewData["Title"] = "DergiEkle";
+    Layout = "~/Views/Shared/_Layout2.cshtml";
+}
+
+<form method="post" class="form-group">
+
+    <div style="display:none">
+
+        <input type="text" name="Durum" value="True" />
+
+    </div>
+
+    <div class="form-group">
+        <input type="text" name="DergiAdi" class="form-control rounded-left" placeholder="Dergi Adı" required>
+    </div>
+    <div class="form-group">
+        <input type="text" name="Fiyat" class="form-control rounded-left" placeholder="0,00" required>
+    </div>
+    <div class="form-group">
+        @Html.DropDownListFor(x => x.kategori.ID, (List<SelectListItem>)ViewBag.dgr,new { @class = "form-control" })
+    </div>
+    <div class="form-group">
+        <button type="submit" class="form-control btn btn-primary rounded submit px-3">Dergi Ekle</button>
+    </div>
+</form>

@@ -1,0 +1,36 @@
+﻿@using DergiAboneTakip.Models
+@using X.PagedList
+@using X.PagedList.Mvc.Core
+@model X.PagedList.PagedList<KategoriTablosu>
+@{
+    ViewData["Title"] = "Kategoriler";
+    Layout = "~/Views/Shared/_Layout2.cshtml";
+}
+
+<div class="text-center">
+
+    <br />
+
+    <table class="table table-hover">
+
+        <tr>
+            <th style="text-align:center">ID</th>
+            <th style="text-align:center">Kullanıcı Adı</th>
+        </tr>
+        @foreach (var x in Model)
+        {
+
+            <tr>
+
+                <td>@x.ID</td>
+                <td>@x.KategoriAdi</td>
+
+            </tr>
+        }
+
+    </table>
+
+</div>
+@Html.PagedListPager((IPagedList)Model, s => Url.Action("Kategoriler", new { s }))
+
+<a href="~/Admin/KategoriEkle" class="btn btn-primary">Yeni Kategori Ekle</a>
